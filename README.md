@@ -131,4 +131,3 @@ Si tienes preguntas o sugerencias, no dudes en contactarme:
 - Este código es ideal para principiantes que quieren aprender a usar Keras para problemas simples.
 - Si deseas extender el proyecto, puedes agregar más capas, cambiar las funciones de activación o probar diferentes optimizadores.
 
-Si necesitas más ayuda, ¡avísame! 😄
