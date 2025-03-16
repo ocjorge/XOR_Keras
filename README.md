@@ -122,7 +122,7 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 ## **Contacto**
 Si tienes preguntas o sugerencias, no dudes en contactarme:
 - **Nombre**: Jorge Ortiz
-- **GitHub**: [tu-usuario-github](https://github.com/jorgeoc)
+- **GitHub**: [jorgeoc](https://github.com/jorgeoc)
 
 ---
 
