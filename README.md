@@ -1,106 +1,103 @@
-¡Por supuesto! Aquí tienes un ejemplo de un archivo `README.md` para ambos proyectos: uno en Java (implementación desde cero) y otro en Python (usando Keras). Este archivo explica el propósito del proyecto, cómo ejecutarlo y otros detalles importantes.
+# Red Neuronal en Python: Resolución del Problema XOR con Keras
 
----
-
-## **README.md**
-
-# Red Neuronal para el Problema XOR
-
-Este proyecto implementa una red neuronal para resolver el problema XOR en dos versiones:
-1. **Java**: Implementación desde cero del algoritmo de backpropagation.
-2. **Python**: Implementación usando la biblioteca Keras (TensorFlow).
+Este proyecto implementa una red neuronal utilizando la biblioteca **Keras** (parte de TensorFlow) para resolver el problema XOR. El código es simple, eficiente y demuestra cómo construir, entrenar y evaluar una red neuronal básica.
 
 ---
 
 ## **Contenido**
 1. [Requisitos](#requisitos)
-2. [Java: Implementación desde cero](#java-implementación-desde-cero)
-3. [Python: Implementación con Keras](#python-implementación-con-keras)
-4. [Resultados](#resultados)
-5. [Contribución](#contribución)
-6. [Licencia](#licencia)
+2. [Estructura del Proyecto](#estructura-del-proyecto)
+3. [Cómo Ejecutar](#cómo-ejecutar)
+4. [Explicación del Código](#explicación-del-código)
+5. [Resultados Esperados](#resultados-esperados)
+6. [Contribución](#contribución)
+7. [Licencia](#licencia)
 
 ---
 
 ## **Requisitos**
+- **Python 3.7 o superior**: Asegúrate de tener Python instalado.
+- **Bibliotecas necesarias**:
+  - TensorFlow (incluye Keras).
+  - NumPy.
 
-### Java
-- JDK 8 o superior.
-- IDE o editor de texto para Java (opcional).
-
-### Python
-- Python 3.7 o superior.
-- Bibliotecas:
-  ```bash
-  pip install tensorflow numpy
-  ```
+Puedes instalar las dependencias con el siguiente comando:
+```bash
+pip install tensorflow numpy
+```
 
 ---
 
-## **Java: Implementación desde cero**
-
-### **Descripción**
-Este programa implementa una red neuronal desde cero en Java para resolver el problema XOR. Utiliza el algoritmo de backpropagation con una capa oculta y una capa de salida.
-
-### **Estructura del código**
-- **XorBackprop.java**: Contiene la lógica de la red neuronal y el entrenamiento.
-- **Función de activación**: Sigmoide.
-- **Entrenamiento**: Online (actualización de pesos después de cada patrón).
-
-### **Cómo ejecutar**
-1. Clona el repositorio o descarga el archivo `XorBackprop.java`.
-2. Compila y ejecuta el código:
-   ```bash
-   javac XorBackprop.java
-   java XorBackprop
-   ```
-
-### **Salida esperada**
-El programa mostrará:
-- El número de iteraciones necesarias para converger.
-- Los pesos finales de la red neuronal.
+## **Estructura del Proyecto**
+El proyecto consiste en un único archivo Python:
+- **xor_keras.py**: Contiene la implementación completa de la red neuronal, incluyendo la definición del modelo, el entrenamiento y la evaluación.
 
 ---
 
-## **Python: Implementación con Keras**
-
-### **Descripción**
-Este programa utiliza la biblioteca Keras (TensorFlow) para resolver el problema XOR. Es una implementación más eficiente y escalable que la versión en Java.
-
-### **Estructura del código**
-- **xor_keras.py**: Contiene la definición, entrenamiento y evaluación de la red neuronal.
-- **Arquitectura**:
-  - Capa oculta: 2 neuronas con activación sigmoide.
-  - Capa de salida: 1 neurona con activación sigmoide.
-- **Entrenamiento**: Descenso de gradiente estocástico (SGD).
-
-### **Cómo ejecutar**
-1. Clona el repositorio o descarga el archivo `xor_keras.py`.
-2. Instala las dependencias:
-   ```bash
-   pip install tensorflow numpy
-   ```
-3. Ejecuta el código:
+## **Cómo Ejecutar**
+1. Clona este repositorio o descarga el archivo `xor_keras.py`.
+2. Abre una terminal o línea de comandos y navega hasta la carpeta donde se encuentra el archivo.
+3. Ejecuta el archivo Python:
    ```bash
    python xor_keras.py
    ```
 
-### **Salida esperada**
-El programa mostrará:
-- Las predicciones de la red neuronal para las entradas XOR.
-- La precisión del modelo.
+---
+
+## **Explicación del Código**
+
+### **Importación de Bibliotecas**
+Se importan las bibliotecas necesarias:
+```python
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+import numpy as np
+```
+
+### **Datos de Entrada y Salida**
+Se definen los datos de entrada (`X`) y las salidas esperadas (`y`) para el problema XOR:
+```python
+X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y = np.array([[0], [1], [1], [0]])
+```
+
+### **Definición del Modelo**
+Se crea un modelo secuencial con una capa oculta y una capa de salida:
+```python
+model = Sequential()
+model.add(Dense(2, input_dim=2, activation='sigmoid'))  # Capa oculta con 2 neuronas
+model.add(Dense(1, activation='sigmoid'))  # Capa de salida con 1 neurona
+```
+
+### **Compilación del Modelo**
+Se compila el modelo especificando la función de pérdida, el optimizador y las métricas:
+```python
+model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['accuracy'])
+```
+
+### **Entrenamiento del Modelo**
+El modelo se entrena con los datos de entrada y salida:
+```python
+model.fit(X, y, epochs=10000, batch_size=4, verbose=0)
+```
+
+### **Evaluación del Modelo**
+Se evalúa el modelo y se muestran las predicciones:
+```python
+print("Predicciones:", model.predict(X))
+```
 
 ---
 
-## **Resultados**
-
-### Java
-- **Iteraciones**: El número de iteraciones depende de la inicialización de los pesos y la tasa de aprendizaje.
-- **Pesos finales**: Se muestran los pesos de las conexiones entre las capas.
-
-### Python
-- **Predicciones**: La red neuronal debería predecir correctamente las salidas XOR.
-- **Precisión**: Debería alcanzar una precisión del 100% después del entrenamiento.
+## **Resultados Esperados**
+Al ejecutar el programa, deberías ver una salida similar a la siguiente:
+```
+Predicciones: [[0.01]
+               [0.99]
+               [0.98]
+               [0.02]]
+```
+Esto indica que la red neuronal ha aprendido correctamente la función XOR.
 
 ---
 
@@ -121,7 +118,7 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 ## **Contacto**
 Si tienes preguntas o sugerencias, no dudes en contactarme:
-- **Nombre**: Jorge Ortiz
+- **Nombre**: [Jorge Ortiz]
 - **GitHub**: [jorgeoc](https://github.com/jorgeoc)
 
 ---
@@ -130,5 +127,8 @@ Si tienes preguntas o sugerencias, no dudes en contactarme:
 
 ---
 
-### **Notas adicionales**
-! 😄
+### **Notas Adicionales**
+- Este código es ideal para principiantes que quieren aprender a usar Keras para problemas simples.
+- Si deseas extender el proyecto, puedes agregar más capas, cambiar las funciones de activación o probar diferentes optimizadores.
+
+Si necesitas más ayuda, ¡avísame! 😄
